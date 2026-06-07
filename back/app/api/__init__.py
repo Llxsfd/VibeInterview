@@ -1,4 +1,4 @@
 # API 路由模块
-from app.api import auth, users
+from app.api import auth, documents, users
 
-__all__ = ["auth", "users"]
+__all__ = ["auth", "documents", "users"]
