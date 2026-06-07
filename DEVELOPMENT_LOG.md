@@ -69,3 +69,34 @@
 ### 自测记录
 - `python -m pytest -q`：4 passed，存在 python-jose 的 UTC deprecation warning，不影响当前功能。
 - `DATABASE_URL=sqlite:///./bootstrap_test.db python scripts/bootstrap_db.py`：建表与 mock seed 路径通过。
+
+---
+
+## 阶段三：PDF 文档入库与 Chunk 预览模块
+**时间**：2026-06-07
+**提交**：`3cf297c feat: implement document ingestion module`
+**目标**：完成用户上传 PDF、解析文本、清洗标题、切分 chunk、生成本地 embedding、查看 chunk 和删除文档的闭环。
+
+### 核心功能
+- 实现 `/api/v1/documents/upload`、`GET /api/v1/documents`、`GET /api/v1/documents/{id}`、`GET /api/v1/documents/{id}/chunks`、`POST /api/v1/documents/{id}/reindex`、`DELETE /api/v1/documents/{id}`。
+- 上传接口限制 PDF 文件名和 MIME 类型，并按用户隔离保存到后端 `storage/documents/{user_id}/`。
+- 使用 PyMuPDF 解析 PDF 页文本，保留页码，生成入库质量报告。
+- 实现文本清洗、中文章节/小节标题识别、chunk 切分、关键词提取和 deterministic embedding。
+- 删除文档时同步删除 chunk、embedding 和本地文件，避免继续参与后续检索。
+
+### 核心代码
+- `back/app/api/documents.py`：文档上传、列表、详情、chunk 预览、reindex 占位和删除 API。
+- `back/app/services/pdf_parser_service.py`：PDF 页文本解析。
+- `back/app/services/text_cleaner_service.py`：清洗文本、识别标题、提取计算机基础关键词。
+- `back/app/services/chunk_service.py`：按标题/段落/长度生成 chunk 和 embedding_text。
+- `back/app/services/embedding_service.py`：本地 deterministic embedding，用于无模型 Key 时的可测 fallback。
+- `back/app/services/document_service.py`：文档入库、质量报告、用户隔离查询和删除级联。
+- `back/tests/test_documents.py`：覆盖清洗、标题识别、chunk metadata、PDF 上传、非法文件拒绝和删除。
+
+### 使用技术
+- FastAPI UploadFile/Form、PyMuPDF、SQLAlchemy、后端本地文件系统、JSON metadata、pytest。
+- 当前版本同步完成解析和索引，后续可将 `create_indexed_document` 投递到 Celery 异步任务。
+
+### 自测记录
+- `python -m pytest -q`：9 passed；仍有 python-jose UTC deprecation warning。
+- 测试会生成临时 SQLite DB 和 storage 文件，提交前已清理运行产物。

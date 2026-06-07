@@ -22,7 +22,7 @@
 - [x] 3.2 Implement document schemas, parser, cleaner, chunker, deterministic embedding service, and quality report
 - [x] 3.3 Implement document upload/list/detail/chunks/reindex/delete APIs with file safety checks
 - [x] 3.4 Run document tests and API smoke requests, then commit the verified module
-- [ ] 3.5 Append document ingestion entry to `DEVELOPMENT_LOG.md`
+- [x] 3.5 Append document ingestion entry to `DEVELOPMENT_LOG.md`
 
 ## 4. RAG Chat Module
 
