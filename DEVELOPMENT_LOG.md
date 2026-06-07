@@ -129,3 +129,34 @@
 
 ### 自测记录
 - `python -m pytest -q`：11 passed；仍有 python-jose UTC deprecation warning。
+
+---
+
+## 阶段五：学习、题库、错题、面试、语音与学习计划 API
+**时间**：2026-06-07
+**提交**：`30108b9 feat: implement learning interview speech and study APIs`
+**目标**：补齐复习平台和模拟面试后端闭环，让资料可以转化为知识点、练习题、错题、面试报告、语音 fallback 和学习计划。
+
+### 核心功能
+- 知识点：`POST /api/v1/knowledge-points/extract` 从用户 chunk 中生成知识点，`GET /api/v1/knowledge-points` 查看列表。
+- 题库：`POST /api/v1/questions/generate` 生成练习题，`GET /api/v1/questions` 查看题目，`POST /api/v1/questions/{id}/answer` 自动判题和生成反馈。
+- 错题本：答错题目自动进入 `/api/v1/mistakes`，支持复习计数和删除。
+- 面试：`POST /api/v1/interviews` 根据用户资料创建面试轮次，支持答题评分、追问、结束面试和报告查询。
+- 语音：`POST /api/v1/speech/asr` 保存音频并在未配置 ASR 时返回明确 fallback 转写，`POST /api/v1/speech/tts` 返回本地 TTS fallback，支持删除音频。
+- 学习计划：`POST /api/v1/study-plans/generate` 生成按天任务，支持查看和标记任务完成。
+
+### 核心代码
+- `back/app/api/learning.py`：知识点、题目、答题记录和错题本 API。
+- `back/app/api/interviews.py`：面试创建、答题评分、结束和报告 API。
+- `back/app/api/speech.py`：ASR/TTS fallback 与音频删除 API。
+- `back/app/api/study_plans.py`：学习计划生成、查看和任务完成 API。
+- `back/app/schemas/workflows.py`：业务流程请求模型。
+- `back/tests/test_learning_interview_speech_plan.py`：覆盖资料到知识点/题库/错题、面试评分报告、语音和学习计划的主路径。
+
+### 使用技术
+- FastAPI、SQLAlchemy、Pydantic、JSON plan content、SQLAlchemy `flag_modified`、本地文件存储、deterministic scoring/fallback。
+- 大模型、ASR、TTS 均未在前端保存 Key；当前通过后端 fallback 保证无外部凭证也可测试。
+
+### 自测记录
+- `python -m pytest -q`：14 passed；仍有 python-jose UTC deprecation warning。
+- 发现并修复 SQLAlchemy JSON 嵌套任务状态不持久化问题，使用 `flag_modified(plan, "plan_content")` 标记更新。

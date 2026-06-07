@@ -40,7 +40,7 @@
 - [x] 5.5 Write failing tests for ASR/TTS fallback, audio delete, study plan generation, and task completion updates
 - [x] 5.6 Implement speech and study-plan APIs with protected storage and deterministic fallbacks
 - [x] 5.7 Run module tests and API smoke requests, then commit each verified API group
-- [ ] 5.8 Append learning/interview/speech/study entries to `DEVELOPMENT_LOG.md`
+- [x] 5.8 Append learning/interview/speech/study entries to `DEVELOPMENT_LOG.md`
 
 ## 6. Frontend Experience
 
