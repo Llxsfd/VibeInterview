@@ -44,14 +44,14 @@
 
 ## 6. Frontend Experience
 
-- [ ] 6.1 Add frontend dependencies for query caching, forms, validation, state, and motion
-- [ ] 6.2 Implement API client, auth/session store, query provider, route guards, and shared app shell
-- [ ] 6.3 Implement login/register/profile pages with polished form states
-- [ ] 6.4 Implement dashboard, documents, document detail, and chat pages
-- [ ] 6.5 Implement knowledge points, questions, mistakes, study plan pages
-- [ ] 6.6 Implement interview list/new/detail/report pages with text and voice-answer UI states
-- [ ] 6.7 Apply glassmorphism design system, ambient backgrounds, responsive layout, and smooth transitions globally
-- [ ] 6.8 Run frontend lint/build and browser visual verification, then commit verified frontend groups
+- [x] 6.1 Add frontend dependencies for query caching, forms, validation, state, and motion
+- [x] 6.2 Implement API client, auth/session store, query provider, route guards, and shared app shell
+- [x] 6.3 Implement login/register/profile pages with polished form states
+- [x] 6.4 Implement dashboard, documents, document detail, and chat pages
+- [x] 6.5 Implement knowledge points, questions, mistakes, study plan pages
+- [x] 6.6 Implement interview list/new/detail/report pages with text and voice-answer UI states
+- [x] 6.7 Apply glassmorphism design system, ambient backgrounds, responsive layout, and smooth transitions globally
+- [x] 6.8 Run frontend lint/build and browser visual verification, then commit verified frontend groups
 - [ ] 6.9 Append frontend experience entries to `DEVELOPMENT_LOG.md`
 
 ## 7. Operations and Final Verification
