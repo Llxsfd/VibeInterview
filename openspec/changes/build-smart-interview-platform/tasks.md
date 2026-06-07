@@ -1,9 +1,9 @@
 ## 1. Planning and Project Baseline
 
 - [x] 1.1 Validate OpenSpec artifacts for `build-smart-interview-platform`
-- [ ] 1.2 Commit OpenSpec proposal, specs, design, and task plan
-- [ ] 1.3 Install/update backend and frontend dependencies required by the documented stack
-- [ ] 1.4 Run baseline backend and frontend checks and record any pre-existing failures
+- [x] 1.2 Commit OpenSpec proposal, specs, design, and task plan
+- [x] 1.3 Install/update backend and frontend dependencies required by the documented stack
+- [x] 1.4 Run baseline backend and frontend checks and record any pre-existing failures
 
 ## 2. Backend Foundation, Database, and Auth
 
