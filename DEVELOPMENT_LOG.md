@@ -100,3 +100,32 @@
 ### 自测记录
 - `python -m pytest -q`：9 passed；仍有 python-jose UTC deprecation warning。
 - 测试会生成临时 SQLite DB 和 storage 文件，提交前已清理运行产物。
+
+---
+
+## 阶段四：RAG 智能问答与检索调试模块
+**时间**：2026-06-07
+**提交**：`04c3b44 feat: implement rag chat module`
+**目标**：实现用户基于个人资料进行问答、返回引用来源、低置信度拒答和检索结果查看。
+
+### 核心功能
+- 实现 `/api/v1/chat/sessions` 会话创建/列表/详情。
+- 实现 `/api/v1/chat/sessions/{id}/messages`，保存用户问题和助手回答。
+- 检索过程强制使用当前用户 ID，并支持会话 subject 和 document_scope 过滤。
+- 使用关键词重叠作为本地 fallback 检索分数，按分数排序并返回 Top K chunk。
+- 当检索分数不足时返回“资料不足”提示，避免编造来源。
+- 实现 `/api/v1/chat/messages/{id}/retrieved-chunks`，用于用户查看本次问答引用的 chunk。
+
+### 核心代码
+- `back/app/api/chat.py`：问答会话、消息提交和检索调试 API。
+- `back/app/services/retriever_service.py`：用户隔离检索、tokenize、subject/document 过滤和分数计算。
+- `back/app/services/rag_service.py`：基于检索 chunk 生成 deterministic RAG 回答、面试回答版本、追问和 citations。
+- `back/app/schemas/chat.py`：Chat session、question、answer 和 retrieved chunk 响应模型。
+- `back/tests/test_chat.py`：覆盖引用回答、debug chunks 和低置信度拒答。
+
+### 使用技术
+- FastAPI、SQLAlchemy、Pydantic、用户隔离查询、确定性 RAG fallback、pytest。
+- 当前检索为轻量 keyword/vector-like fallback，后续可替换为 pgvector + rerank 模型。
+
+### 自测记录
+- `python -m pytest -q`：11 passed；仍有 python-jose UTC deprecation warning。

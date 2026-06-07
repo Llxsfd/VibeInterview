@@ -29,7 +29,7 @@
 - [x] 4.1 Write failing tests for scoped retrieval, low-confidence refusal, cited answers, and retrieved-chunk debug API
 - [x] 4.2 Implement chat schemas, retrieval service, deterministic RAG answer service, and chat routers
 - [x] 4.3 Run RAG chat tests and API smoke requests, then commit the verified module
-- [ ] 4.4 Append RAG chat entry to `DEVELOPMENT_LOG.md`
+- [x] 4.4 Append RAG chat entry to `DEVELOPMENT_LOG.md`
 
 ## 5. Learning, Practice, Mistake, Interview, Speech, and Study APIs
 
