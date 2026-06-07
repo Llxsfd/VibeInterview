@@ -8,7 +8,7 @@ from urllib.parse import urlparse
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from sqlalchemy import create_engine, text
-from sqlalchemy.exc import OperationalError, ProgrammingError
+from sqlalchemy.exc import NotSupportedError, OperationalError, ProgrammingError
 from sqlalchemy.orm import Session
 
 from app.core.config import settings
@@ -39,7 +39,7 @@ def enable_pgvector_if_available() -> bool:
         with engine.begin() as connection:
             connection.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
         return True
-    except (OperationalError, ProgrammingError):
+    except (NotSupportedError, OperationalError, ProgrammingError):
         return False
 
 

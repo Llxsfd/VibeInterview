@@ -220,3 +220,23 @@
 - `npm run lint`：No ESLint warnings or errors。
 - `npm run build`：Compiled successfully。
 - `openspec validate build-smart-interview-platform --strict`：valid。
+
+---
+
+## Final PostgreSQL Bootstrap Verification Update
+**Date**: 2026-06-07
+**Module**: Operations / database bootstrap hardening
+
+### Core Outcome
+- Verified local PostgreSQL on `127.0.0.1:5432` with project credentials `postgres / llx123123`.
+- Ran `python scripts/bootstrap_db.py` against the real PostgreSQL instance and confirmed `smart_interview_platform` database creation, ORM table creation, and `demo@example.com` mock user seeding.
+- Confirmed the local PostgreSQL distribution does not have the `vector` extension installed; hardened bootstrap to continue safely with `pgvector: False` instead of aborting.
+- Added regression coverage for pgvector-unavailable bootstrap behavior.
+
+### Core Code
+- `back/scripts/bootstrap_db.py`: catches `NotSupportedError` in `enable_pgvector_if_available()` so missing server-side `vector` extension is treated as a recoverable capability check.
+- `back/tests/test_bootstrap_db.py`: verifies bootstrap returns `False` when `CREATE EXTENSION vector` is not supported.
+
+### Verification
+- `python -m pytest tests/test_bootstrap_db.py -q`: 1 passed.
+- `python scripts/bootstrap_db.py`: `{'database': 'smart_interview_platform', 'created': True, 'pgvector': False, 'seeded': True}`.
