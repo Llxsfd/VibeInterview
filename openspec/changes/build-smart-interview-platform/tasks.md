@@ -14,7 +14,7 @@
 - [x] 2.5 Write failing auth/profile API tests
 - [x] 2.6 Implement password hashing, JWT helpers, auth dependencies, register/login/me/profile APIs
 - [x] 2.7 Run backend auth/profile tests and commit the verified module
-- [ ] 2.8 Append backend foundation/auth entry to `DEVELOPMENT_LOG.md`
+- [x] 2.8 Append backend foundation/auth entry to `DEVELOPMENT_LOG.md`
 
 ## 3. Document Ingestion Module
 

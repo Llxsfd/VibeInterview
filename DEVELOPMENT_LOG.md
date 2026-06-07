@@ -39,3 +39,33 @@
 ---
 
 *(后续阶段功能开发将继续在下方追加记录...)*
+
+---
+
+## 阶段二：后端基础、数据库模型与账户安全模块
+**时间**：2026-06-07
+**提交**：`2de9686 feat: implement backend auth and database foundation`
+**目标**：建立后端核心运行基础，完成用户注册、登录、JWT 鉴权、学习档案读写和数据库初始化能力。
+
+### 核心功能
+- 实现 `/api/v1/auth/register`、`/api/v1/auth/login`、`/api/v1/users/me`、`/api/v1/users/profile`。
+- 注册时校验重复用户名/邮箱，使用 bcrypt 方案加密密码，并自动创建默认学习档案。
+- 登录成功后返回 JWT Bearer Token，受保护接口通过 Authorization Header 获取当前用户。
+- 建立用户、档案、文档、chunk、embedding、问答、知识点、题库、面试、语音、错题和学习计划的 SQLAlchemy ORM 基础模型。
+- 新增 `scripts/bootstrap_db.py`，支持本地 PostgreSQL 建库、尝试启用 pgvector、建表和植入 `demo@example.com` mock 用户；测试环境支持 SQLite 路径验证。
+
+### 核心代码
+- `back/app/core/config.py`：集中管理 PostgreSQL、JWT、上传限制、存储路径和模型服务密钥配置。
+- `back/app/core/security.py`：封装密码哈希、密码校验、JWT 创建和解析。
+- `back/app/db/session.py`：提供 SQLAlchemy `Base`、engine、Session 和 `init_db`。
+- `back/app/models/entities.py`：定义平台核心数据表与索引。
+- `back/app/api/auth.py`、`back/app/api/users.py`、`back/app/api/deps.py`：实现认证、用户档案和鉴权依赖。
+- `back/tests/test_auth_profile.py`：覆盖注册、重复邮箱、登录、当前用户和档案更新。
+
+### 使用技术
+- FastAPI、Pydantic v2、SQLAlchemy 2、PostgreSQL/SQLite 测试替身、python-jose、passlib+bcrypt、pytest、FastAPI TestClient。
+- bcrypt 版本锁定为 `>=4.0.1,<4.1.0`，避免 passlib 与新版 bcrypt 的兼容告警和哈希失败。
+
+### 自测记录
+- `python -m pytest -q`：4 passed，存在 python-jose 的 UTC deprecation warning，不影响当前功能。
+- `DATABASE_URL=sqlite:///./bootstrap_test.db python scripts/bootstrap_db.py`：建表与 mock seed 路径通过。
