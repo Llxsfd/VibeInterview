@@ -33,13 +33,13 @@
 
 ## 5. Learning, Practice, Mistake, Interview, Speech, and Study APIs
 
-- [ ] 5.1 Write failing tests for knowledge point extraction, question generation, answer evaluation, and mistake book updates
-- [ ] 5.2 Implement knowledge point, question, answer record, and mistake APIs
-- [ ] 5.3 Write failing tests for interview creation, answer scoring, finishing, and report generation
-- [ ] 5.4 Implement interview session, turn, score, follow-up, and report APIs
-- [ ] 5.5 Write failing tests for ASR/TTS fallback, audio delete, study plan generation, and task completion updates
-- [ ] 5.6 Implement speech and study-plan APIs with protected storage and deterministic fallbacks
-- [ ] 5.7 Run module tests and API smoke requests, then commit each verified API group
+- [x] 5.1 Write failing tests for knowledge point extraction, question generation, answer evaluation, and mistake book updates
+- [x] 5.2 Implement knowledge point, question, answer record, and mistake APIs
+- [x] 5.3 Write failing tests for interview creation, answer scoring, finishing, and report generation
+- [x] 5.4 Implement interview session, turn, score, follow-up, and report APIs
+- [x] 5.5 Write failing tests for ASR/TTS fallback, audio delete, study plan generation, and task completion updates
+- [x] 5.6 Implement speech and study-plan APIs with protected storage and deterministic fallbacks
+- [x] 5.7 Run module tests and API smoke requests, then commit each verified API group
 - [ ] 5.8 Append learning/interview/speech/study entries to `DEVELOPMENT_LOG.md`
 
 ## 6. Frontend Experience

@@ -210,7 +210,7 @@ class InterviewAnswerAudio(Base):
 
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=uuid_str)
     user_id: Mapped[str] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), index=True, nullable=False)
-    session_id: Mapped[str] = mapped_column(ForeignKey("interview_sessions.id", ondelete="CASCADE"), index=True, nullable=False)
+    session_id: Mapped[str | None] = mapped_column(ForeignKey("interview_sessions.id", ondelete="CASCADE"), index=True, nullable=True)
     turn_id: Mapped[str | None] = mapped_column(ForeignKey("interview_turns.id", ondelete="SET NULL"), nullable=True)
     audio_url: Mapped[str] = mapped_column(String(500), nullable=False)
     duration_seconds: Mapped[int] = mapped_column(Integer, default=0, nullable=False)

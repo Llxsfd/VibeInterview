@@ -14,6 +14,15 @@ from app.schemas.chat import (
     RetrievedChunkRead,
 )
 from app.schemas.documents import DocumentChunkRead, DocumentRead
+from app.schemas.workflows import (
+    AnswerSubmitRequest,
+    InterviewAnswerRequest,
+    InterviewCreateRequest,
+    KnowledgeExtractRequest,
+    QuestionGenerateRequest,
+    StudyPlanGenerateRequest,
+    TtsRequest,
+)
 
 __all__ = [
     "AuthResponse",
@@ -24,6 +33,13 @@ __all__ = [
     "DocumentChunkRead",
     "DocumentRead",
     "RetrievedChunkRead",
+    "AnswerSubmitRequest",
+    "InterviewAnswerRequest",
+    "InterviewCreateRequest",
+    "KnowledgeExtractRequest",
+    "QuestionGenerateRequest",
+    "StudyPlanGenerateRequest",
+    "TtsRequest",
     "UserLogin",
     "UserProfileRead",
     "UserProfileUpdate",

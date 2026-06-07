@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api import auth, chat, documents, users
+from app.api import auth, chat, documents, interviews, learning, speech, study_plans, users
 from app.core.config import settings
 from app.db import init_db
 
@@ -37,4 +37,10 @@ def read_root():
 app.include_router(auth.router, prefix=settings.API_V1_STR)
 app.include_router(chat.router, prefix=settings.API_V1_STR)
 app.include_router(documents.router, prefix=settings.API_V1_STR)
+app.include_router(interviews.router, prefix=settings.API_V1_STR)
+app.include_router(learning.knowledge_router, prefix=settings.API_V1_STR)
+app.include_router(learning.questions_router, prefix=settings.API_V1_STR)
+app.include_router(learning.mistakes_router, prefix=settings.API_V1_STR)
+app.include_router(speech.router, prefix=settings.API_V1_STR)
+app.include_router(study_plans.router, prefix=settings.API_V1_STR)
 app.include_router(users.router, prefix=settings.API_V1_STR)
