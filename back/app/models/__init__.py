@@ -1,1 +1,36 @@
 # 数据库模型
+from app.models.entities import (
+    ChatMessage,
+    ChatSession,
+    ChunkEmbedding,
+    Document,
+    DocumentChunk,
+    InterviewAnswerAudio,
+    InterviewSession,
+    InterviewTurn,
+    KnowledgePoint,
+    MistakeBook,
+    Question,
+    StudyPlan,
+    User,
+    UserProfile,
+    UserQuestionRecord,
+)
+
+__all__ = [
+    "ChatMessage",
+    "ChatSession",
+    "ChunkEmbedding",
+    "Document",
+    "DocumentChunk",
+    "InterviewAnswerAudio",
+    "InterviewSession",
+    "InterviewTurn",
+    "KnowledgePoint",
+    "MistakeBook",
+    "Question",
+    "StudyPlan",
+    "User",
+    "UserProfile",
+    "UserQuestionRecord",
+]

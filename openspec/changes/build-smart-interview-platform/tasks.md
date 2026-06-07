@@ -7,13 +7,13 @@
 
 ## 2. Backend Foundation, Database, and Auth
 
-- [ ] 2.1 Add backend configuration for PostgreSQL, JWT, storage, model providers, upload limits, and CORS
-- [ ] 2.2 Add SQLAlchemy database session, declarative base, and model registry
-- [ ] 2.3 Implement ORM models, relationships, indexes, JSON metadata, and pgvector bootstrap attempt
-- [ ] 2.4 Add database bootstrap and seed script using local PostgreSQL credentials
-- [ ] 2.5 Write failing auth/profile API tests
-- [ ] 2.6 Implement password hashing, JWT helpers, auth dependencies, register/login/me/profile APIs
-- [ ] 2.7 Run backend auth/profile tests and commit the verified module
+- [x] 2.1 Add backend configuration for PostgreSQL, JWT, storage, model providers, upload limits, and CORS
+- [x] 2.2 Add SQLAlchemy database session, declarative base, and model registry
+- [x] 2.3 Implement ORM models, relationships, indexes, JSON metadata, and pgvector bootstrap attempt
+- [x] 2.4 Add database bootstrap and seed script using local PostgreSQL credentials
+- [x] 2.5 Write failing auth/profile API tests
+- [x] 2.6 Implement password hashing, JWT helpers, auth dependencies, register/login/me/profile APIs
+- [x] 2.7 Run backend auth/profile tests and commit the verified module
 - [ ] 2.8 Append backend foundation/auth entry to `DEVELOPMENT_LOG.md`
 
 ## 3. Document Ingestion Module
