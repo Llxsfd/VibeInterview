@@ -160,3 +160,35 @@
 ### 自测记录
 - `python -m pytest -q`：14 passed；仍有 python-jose UTC deprecation warning。
 - 发现并修复 SQLAlchemy JSON 嵌套任务状态不持久化问题，使用 `flag_modified(plan, "plan_content")` 标记更新。
+
+---
+
+## 阶段六：前端应用壳、全业务路由与毛玻璃 UI
+**时间**：2026-06-07
+**提交**：`3bef63f feat: implement glassmorphism frontend experience`
+**目标**：完成 Next.js 前端主要页面、共享导航壳、业务工作台和现代化 Glassmorphism 视觉体验。
+
+### 核心功能
+- 首页自动进入 `/dashboard`，第一屏即学习与面试工作台。
+- 新增登录、注册、总览、资料、文档详情、问答、知识点、刷题、面试列表、新建面试、面试房间、面试报告、错题本、学习计划和个人设置页面。
+- 新增共享 `AppShell`，统一侧边导航、Key 安全提示和页面内容区域。
+- 新增可复用 `GlassPanel`、`PageHeader`、`MetricCard`、`ActionLink`、`StatusPill`、`ProgressBar` 组件。
+- 新增 `front/src/lib/api.ts`，通过 `NEXT_PUBLIC_API_BASE_URL` 指向后端 API，不包含任何模型密钥。
+- 新增 `front/src/lib/mock-data.ts`，为前端页面提供可视化 mock 数据。
+
+### 核心代码
+- `front/src/app/globals.css`：深色背景、环境光、玻璃面板、稳定网格、按钮状态、响应式布局和页面进入动画。
+- `front/src/components/AppShell.tsx`：应用导航和全局布局。
+- `front/src/components/ui.tsx`：通用 UI 基元。
+- `front/src/app/**/page.tsx`：业务页面路由。
+- `front/.eslintrc.json`：Next ESLint 配置。
+
+### 使用技术
+- Next.js 14 App Router、React、TypeScript、Tailwind CSS、Lucide React、Framer Motion/TanStack Query/Zustand/React Hook Form/Zod 依赖预置。
+- 视觉风格采用毛玻璃面板、环境背景光、冷青与暖珊瑚/金色点缀、hover 过渡和响应式折叠导航。
+
+### 自测记录
+- `npx tsc --noEmit`：通过。
+- `npm run lint`：No ESLint warnings or errors。
+- `npm run build`：Compiled successfully，16 个 app routes 完成生成。
+- in-app Browser 验证 `/dashboard`：桌面和 390px 移动视口均无横向溢出，控制台无 error log。
