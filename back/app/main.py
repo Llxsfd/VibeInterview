@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api import auth, documents, users
+from app.api import auth, chat, documents, users
 from app.core.config import settings
 from app.db import init_db
 
@@ -35,5 +35,6 @@ def read_root():
     return {"message": "Welcome to Smart Interview Platform API"}
 
 app.include_router(auth.router, prefix=settings.API_V1_STR)
+app.include_router(chat.router, prefix=settings.API_V1_STR)
 app.include_router(documents.router, prefix=settings.API_V1_STR)
 app.include_router(users.router, prefix=settings.API_V1_STR)
