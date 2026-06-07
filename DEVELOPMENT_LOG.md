@@ -192,3 +192,31 @@
 - `npm run lint`：No ESLint warnings or errors。
 - `npm run build`：Compiled successfully，16 个 app routes 完成生成。
 - in-app Browser 验证 `/dashboard`：桌面和 390px 移动视口均无横向溢出，控制台无 error log。
+
+---
+
+## 阶段七：运维配置、启动指南与最终验证
+**时间**：2026-06-07
+**目标**：补齐本地启动、Docker Compose、环境变量示例、storage 占位和主流程 smoke 验证。
+
+### 核心功能
+- 新增 `back/.env.example` 和 `front/.env.example`，后端持有数据库/JWT/模型服务密钥，前端仅持有公开 API Base URL。
+- 新增 `docker-compose.yml`，包含 frontend、backend、postgres(pgvector)、redis 和 celery_worker。
+- 新增 `storage/` 子目录占位，匹配文档、音频、TTS 和临时文件存储规划。
+- 新增 `back/scripts/smoke_api.py`，使用 FastAPI TestClient 跑注册、上传、RAG、知识点、面试和学习计划主流程。
+- 更新 `STARTUP_GUIDE.md`，补充当前功能、数据库初始化、验证命令和 Docker Compose 启动方式。
+
+### 核心代码
+- `back/scripts/bootstrap_db.py`：PostgreSQL 建库、pgvector 尝试、建表和 mock seed。
+- `back/scripts/smoke_api.py`：端到端 API smoke。
+- `back/app/workers/tasks.py`：Celery worker 最小入口。
+- `docker-compose.yml`：本地容器化服务编排。
+
+### 自测记录
+- `python scripts/bootstrap_db.py`：本机 5432 端口连接被拒绝，当前环境没有可用 PostgreSQL 服务；脚本未能在真实 Postgres 上建库。
+- `python -m pytest -q`：14 passed。
+- `DATABASE_URL=sqlite:///./smoke_test.db python scripts/smoke_api.py`：smoke api ok。
+- `npx tsc --noEmit`：通过。
+- `npm run lint`：No ESLint warnings or errors。
+- `npm run build`：Compiled successfully。
+- `openspec validate build-smart-interview-platform --strict`：valid。

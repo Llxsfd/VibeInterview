@@ -56,10 +56,10 @@
 
 ## 7. Operations and Final Verification
 
-- [ ] 7.1 Add `.env.example`, Docker Compose, storage directories, and startup guide updates
-- [ ] 7.2 Run database bootstrap against local PostgreSQL if reachable and record result
-- [ ] 7.3 Run full backend test suite
-- [ ] 7.4 Run full frontend lint/build suite
-- [ ] 7.5 Run end-to-end API smoke script for the main user journey
-- [ ] 7.6 Validate OpenSpec change status
-- [ ] 7.7 Commit operations/final verification documentation
+- [x] 7.1 Add `.env.example`, Docker Compose, storage directories, and startup guide updates
+- [x] 7.2 Run database bootstrap against local PostgreSQL if reachable and record result
+- [x] 7.3 Run full backend test suite
+- [x] 7.4 Run full frontend lint/build suite
+- [x] 7.5 Run end-to-end API smoke script for the main user journey
+- [x] 7.6 Validate OpenSpec change status
+- [x] 7.7 Commit operations/final verification documentation
